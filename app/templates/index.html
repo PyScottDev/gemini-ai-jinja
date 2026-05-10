@@ -1,28 +1,59 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Guardian AI News</title>
-  </head>
-  <body>
-    <h1>News: {{ topic }} / {{ level|upper }}</h1>
+{% include "header.html" %}
 
-    {% for article in articles %}
-      <article>
-        <h2>{{ article.headline }}</h2>
-        <p>{{ article.subheadline }}</p>
+<div class="container mt-3 mt-md-5">
+  <div class="row">
+    <main id="mainContent" class="col-12 col-md-9 ps-3 ps-md-5">
 
-        {% if article.thumbnail %}
-          <img src="{{ article.thumbnail }}" alt="" style="max-width: 300px;">
-        {% endif %}
-
-        <p>
-          <strong>Topic:</strong> {{ article.topic }}
-          <strong>Level:</strong> {{ article.level }}
+      <div class="mb-5">
+        <h1 class="fw-bold">Guardian News</h1>
+        <p class="text-muted">
+          Topic: {{ topic }} | Level: {{ level|upper }}
         </p>
-      </article>
+      </div>
 
-      <hr>
-    {% endfor %}
-  </body>
-</html>
+<!-- TODO add href url_for('article_page', article_id=article.id, level=level) -->
+
+      {% for article in articles %}
+      <div class="row mb-5 align-items-center">
+        <div class="col-12 col-lg-8 order-2 order-lg-1">
+          <a
+            href="#"
+            class="text-decoration-none text-dark"
+          >
+            <h2 class="fw-bold">{{ article.headline }}</h2>
+            <h3 class="h6 text-muted">{{ article.subheadline }}</h3>
+          </a>
+
+          <div class="post-meta d-flex align-items-center flex-wrap gap-2 mb-1 mb-md-3">
+            <span class="text-muted small">
+              {{ article.created_on }}
+            </span>
+
+            <span class="badge rounded-pill bg-primary text-light px-3">
+              {{ article.topic }}
+            </span>
+
+            <span class="badge rounded-pill bg-secondary text-light px-3">
+              {{ article.level|upper }}
+            </span>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-4 order-1 order-lg-2 mb-3 mb-lg-0">
+          {% if article.thumbnail %}
+          <img
+            src="{{ article.thumbnail }}"
+            class="img-fluid rounded"
+            alt="{{ article.headline }}"
+          />
+          {% endif %}
+        </div>
+      </div>
+      <hr />
+      {% endfor %}
+
+    </main>
+  </div>
+</div>
+
+{% include "footer.html" %}

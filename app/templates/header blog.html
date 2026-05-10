@@ -10,14 +10,12 @@
     <meta name="author" content="" />
     <title>Student voices</title>
     {% block styles %}
-      <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-      />
+    <!-- Load Bootstrap-Flask CSS here -->
+    {{ bootstrap.load_css() }}
     <link
       rel="icon"
       type="image/x-icon"
-      href="{{ url_for('static', path='/assets/student-voices-icon.png') }}"
+      href="{{ url_for('static', filename='assets/student-voices-icon.png') }}"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,13 +34,34 @@
       rel="stylesheet"
     />
     <link
-      href="{{ url_for('static', path='/css/styles.css') }}"
+      href="{{ url_for('static', filename='css/styles.css') }}"
       rel="stylesheet"
     />
     {% endblock %}
   </head>
   <body>
-    
+    <div class="container mt-3 flash-container">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div
+        class="alert alert-{{ category if category != 'message' else 'info' }} alert-dismissible fade show shadow-sm border-0 mb-3"
+        role="alert"
+      >
+        <div class="d-flex align-items-center">
+          <span class="material-symbols-outlined me-2">
+            {{ 'check_circle' if category == 'success' else 'error' if category
+            == 'danger' else 'info' }}
+          </span>
+          <span>{{ message }}</span>
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endfor %} {% endif %} {% endwith %}
     </div>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
@@ -58,10 +77,10 @@
 
         <a
           class="navbar-brand d-flex align-items-center gap-2 pe-md-3 text-wrap"
-          href="{{ url_for('home') }}"
+          href="{{ url_for('get_all_posts') }}"
         >
           <img
-            src="{{ url_for('static', path='/assets/img/fl-logo.svg') }}"
+            src="{{ url_for('static', filename='assets/img/fl-logo.svg') }}"
             alt="Future Learning logo"
             height="62"
           />
@@ -94,24 +113,23 @@
             <li class="nav-item">
               <a
                 class="nav-link px-lg-3 py-3 py-lg-4"
-                href="{{ url_for('home') }}"
+                href="{{ url_for('get_all_posts') }}"
                 >Home</a
               >
             </li>
             <!-- TODO: Only show Login/Register if user is logged out. Otherwise show "Log Out" -->
-            {#
             {% if not current_user.is_authenticated %}
             <li class="nav-item">
               <a
                 class="nav-link px-lg-3 py-3 py-lg-4"
-                href="#"
+                href="{{ url_for('login') }}"
                 >Login</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link px-lg-3 py-3 py-lg-4"
-                href="#"
+                href="{{ url_for('login') }}"
                 >Sign Up</a
               >
             </li>
@@ -119,23 +137,22 @@
             <li class="nav-item">
               <a
                 class="nav-link px-lg-3 py-3 py-lg-4"
-                href="#"
+                href="{{ url_for('logout') }}"
                 >Log Out</a
               >
             </li>
             {% endif %}
-            #}
             <li class="nav-item">
               <a
                 class="nav-link px-lg-3 py-3 py-lg-4"
-                href="#"
+                href="{{ url_for('about') }}"
                 >About</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link px-lg-3 py-3 py-lg-4"
-                href="#"
+                href="{{ url_for('contact') }}"
                 >Contact</a
               >
             </li>
@@ -160,7 +177,7 @@
         <ul class="list-unstyled ps-0">
           <li class="mb-1">
             <a
-              href="{{ url_for('home') }}"
+              href="{{ url_for('get_all_posts') }}"
               class="btn sidebar-heading d-inline-flex align-items-center rounded border-0 text-decoration-none"
             >
               <span class="material-symbols-outlined me-2">home</span>
@@ -168,9 +185,7 @@
             </a>
           </li>
 
-          {#
           {% if current_user.is_authenticated %}
-          #}
           <li class="mb-1">
             <button
               class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
@@ -185,7 +200,7 @@
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                 <li>
                   <a
-                    href="#"
+                    href="{{ url_for('user_stories', username_slug=current_user.slug) }}"
                     class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                   >
                     My stories
@@ -193,7 +208,7 @@
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="{{url_for('add_new_post')}}"
                     class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                   >
                     Create new story
@@ -202,9 +217,7 @@
               </ul>
             </div>
           </li>
-          {#
-          <!-- {% endif %} -->
-           #}
+          {% endif %}
 
           <li class="mb-1">
             <button
@@ -220,7 +233,7 @@
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                 <li>
                   <a
-                    href="#"
+                    href="{{ url_for('show_topic', topic_name='Coming to Ireland') }}"
                     class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                   >
                     Coming to Ireland
@@ -228,7 +241,7 @@
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="{{ url_for('show_topic', topic_name='Life in Ireland') }}"
                     class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                   >
                     Life in Ireland
@@ -236,7 +249,7 @@
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="{{ url_for('show_topic', topic_name='Future plans') }}"
                     class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                   >
                     Future plans
@@ -244,7 +257,7 @@
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="{{ url_for('show_topic', topic_name='Other thoughts') }}"
                     class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                   >
                     Other thoughts
@@ -268,7 +281,7 @@
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                 <li>
                   <a
-                    href="#"
+                    href="{{ url_for('show_level', level_name='Beginner') }}"
                     class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                   >
                     Beginner
@@ -276,7 +289,7 @@
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="{{ url_for('show_level', level_name='Foundation') }}"
                     class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                   >
                     Foundation
@@ -284,7 +297,7 @@
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="{{ url_for('show_level', level_name='Stage 1') }}"
                     class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                   >
                     Stage 1
@@ -292,7 +305,7 @@
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="{{ url_for('show_level', level_name='Stage 2') }}"
                     class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                   >
                     Stage 2
@@ -300,7 +313,7 @@
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="{{ url_for('show_level', level_name='Stage 3') }}"
                     class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                   >
                     Stage 3
@@ -308,7 +321,7 @@
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="{{ url_for('show_level', level_name='Stage 4') }}"
                     class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                   >
                     Stage 4
@@ -320,16 +333,15 @@
           <ul class="list-unstyled d-lg-none border-bottom pb-3 mb-3">
         
           <li>
-            <a class="btn sidebar-heading d-inline-flex align-items-center rounded border-0 text-decoration-none" href="{{ url_for('home') }}"
+            <a class="btn sidebar-heading d-inline-flex align-items-center rounded border-0 text-decoration-none" href="{{ url_for('about') }}"
               >About</a
             >
           </li>
-          {#
-          <!-- {% if current_user.is_authenticated %}
+          {% if current_user.is_authenticated %}
           <li>
             <a
               class="btn sidebar-heading d-inline-flex align-items-center rounded border-0 text-decoration-none"
-              href="#"
+              href="{{ url_for('logout') }}"
               >Log Out</a
             >
           </li>
@@ -339,8 +351,7 @@
               >Login</a
             >
           </li>
-          {% endif %} -->
-          #}
+          {% endif %}
         </ul>
         </ul>
       </div>
