@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Guardian AI News</title>
+  </head>
+  <body>
+    <h1>News: {{ topic }} / {{ level|upper }}</h1>
+
+    {% for article in articles %}
+      <article>
+        <h2>{{ article.headline }}</h2>
+        <p>{{ article.subheadline }}</p>
+
+        {% if article.thumbnail %}
+          <img src="{{ article.thumbnail }}" alt="" style="max-width: 300px;">
+        {% endif %}
+
+        <p>
+          <strong>Topic:</strong> {{ article.topic }}
+          <strong>Level:</strong> {{ article.level }}
+        </p>
+      </article>
+
+      <hr>
+    {% endfor %}
+  </body>
+</html>
