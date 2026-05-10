@@ -3,6 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
+import json
 
 from app.services.guardian import fetch_articles, fetch_body
 from app.services.gemini import simplify_headline, simplify_body
@@ -90,18 +91,53 @@ async def get_articles(
         },
     )
 
-@app.get("/article/{article_id}/{level}", response_model=SimplifiedArticles)
-async def get_body(article_id: int, level: EnglishLevel, session: SessionDep):
+
+@app.get("/news/article/{article_id}/{level}", response_class=HTMLResponse)
+async def get_body(
+    request: Request,
+    article_id: int,
+    level: EnglishLevel,
+    session: SessionDep
+    ):
+    
     db_article = db_full(session, article_id)
     if db_article is None:
         raise HTTPException(status_code=404, detail="Article not found")
     if db_article.body:
-        return db_article
-    full_article = await fetch_body(db_article.guardian_id)
-    simplified_body = await simplify_body(full_article, level.value)
-    updated_article = update_body(session, db_article, simplified_body)
-    return updated_article
+        article=db_article
+    else:
+        full_article = await fetch_body(db_article.guardian_id)
+        simplified_body = await simplify_body(full_article, level.value)
+        article = update_body(session, db_article, simplified_body)
+        
+    questions = []
 
+    if article.questions:
+        try:
+            questions = json.loads(article.questions)
+        except json.JSONDecodeError:
+            questions = []
+            
+    return templates.TemplateResponse(
+        name="article.html",
+        request=request,
+        context={
+            "article": article,
+            "questions": questions,
+        }
+    )
+
+# @app.get("/article/{article_id}/{level}", response_model=SimplifiedArticles)
+# async def get_body(article_id: int, level: EnglishLevel, session: SessionDep):
+#     db_article = db_full(session, article_id)
+#     if db_article is None:
+#         raise HTTPException(status_code=404, detail="Article not found")
+#     if db_article.body:
+#         return db_article
+#     full_article = await fetch_body(db_article.guardian_id)
+#     simplified_body = await simplify_body(full_article, level.value)
+#     updated_article = update_body(session, db_article, simplified_body)
+#     return updated_article
     
     
     

@@ -1,0 +1,58 @@
+{% include "header.html" %}
+
+<main id="mainContent" class="container mt-3 mt-md-5 pt-0 pt-md-5">
+  <div class="row justify-content-left">
+    <div class="col-md-10 col-lg-8 ms-md-5 ps-md-5">
+      <article class="post-content">
+        <h1 class="display-4 fw-bold text-dark mb-3">{{ article.headline }}</h1>
+        <p class="lead text-muted mb-4">{{ article.subheadline }}</p>
+
+        <div class="d-flex align-items-center gap-2 gap-md-3 mb-3 mb-md-4">
+          <img
+            src="{{ article.thumbnail }}"
+            class="rounded-circle border"
+            style="width: 45px; height: 45px; object-fit: cover"
+          />
+
+          <div
+            class="d-flex flex-column flex-md-row gap-1 gap-md-2 align-items-end align-items-md-center"
+          >
+            <span class="badge rounded-pill bg-primary px-2 px-md-3">
+              {{ article.topic }}
+            </span>
+            <span class="badge rounded-pill bg-secondary px-2 px-md-3">
+              {{ article.level }}
+            </span>
+          </div>
+        </div>
+        <img
+          src="{{ article.thumbnail }}"
+          class="img-fluid rounded-4 shadow-sm mb-2 mb-mb-5 w-100"
+          alt="{{ article.headline }}"
+        />
+
+        <div class="blog-body text-dark lh-lg fs-5 mb-5">
+          {{ article.body|safe }}
+        </div>
+
+        <hr />
+
+        <div class="comment-section mt-5">
+          <h4 class="mb-4">Discussion Questions</h4>
+
+          {% if questions %}
+          <ol class="mt-4 fs-5">
+            {% for question in questions %}
+            <li class="mb-3">{{ question }}</li>
+            {% endfor %}
+          </ol>
+          {% else %}
+          <p class="text-muted">No discussion questions available.</p>
+          {% endif %}
+        </div>
+      </article>
+    </div>
+  </div>
+</main>
+
+{% include "footer.html" %}

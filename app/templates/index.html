@@ -11,13 +11,12 @@
         </p>
       </div>
 
-<!-- TODO add href url_for('article_page', article_id=article.id, level=level) -->
 
       {% for article in articles %}
       <div class="row mb-5 align-items-center">
         <div class="col-12 col-lg-8 order-2 order-lg-1">
           <a
-            href="#"
+            href="{{ url_for('get_body', article_id=article.id, level=article.level) }}"
             class="text-decoration-none text-dark"
           >
             <h2 class="fw-bold">{{ article.headline }}</h2>
