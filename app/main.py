@@ -1,5 +1,5 @@
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, HTTPException, Request, Query
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
@@ -9,7 +9,7 @@ from app.services.guardian import fetch_articles, fetch_body
 from app.services.gemini import simplify_headline, simplify_body
 from app.schemas import ArticlePreview, GeminiHeadlines, GeminiBody, NewsTopic, EnglishLevel
 from app.database.session import create_db_and_tables, SessionDep
-from app.database.crud import article_check, db_full, create_headlines, update_body
+from app.database.crud import article_check, db_full, create_headlines, update_body, homepage_articles
 from app.database.models import SimplifiedArticles
 
 @asynccontextmanager
@@ -20,22 +20,45 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
+templates.env.globals["topics"] = NewsTopic
+templates.env.globals["levels"] = EnglishLevel
 
 
 # @app.get("/")
 # def home():
 #     return {"message": "Guardian AI News API is running"}
 
-@app.get("/", response_class=HTMLResponse)
-def home(request: Request):
-    return templates.TemplateResponse(
-    name="home.html",
-    request=request,
-    context={
-        "message": "Guardian AI News API is running",
-    },
-)
+# @app.get("/")
+# def home(request: Request):
+#     return templates.TemplateResponse(
+#     "home.html",
+#         {
+#         request=request,
+#         "topics"=NewsTopic,
+#         "levels"=EnglishLevel,
+#         }
+#     )
 
+@app.get("/")
+def home(request: Request, session: SessionDep):
+    articles = homepage_articles(session)
+    return templates.TemplateResponse(
+       name= "home.html",
+       request=request,
+       context={
+           "articles": articles
+       }
+    )
+
+@app.get("/choose")
+def choose_articles(
+    topic: NewsTopic = Query(...),
+    level: EnglishLevel = Query(...),
+):
+    return RedirectResponse(
+        url=f"/news/{topic.value}/{level.value}",
+        status_code=303,
+    )
 
 
 # @app.get("/articles/{topic}/{level}", response_model=list[SimplifiedArticles])

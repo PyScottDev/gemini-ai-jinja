@@ -1,11 +1,88 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Guardian AI News</title>
-  </head>
-  <body>
-    <h1>Guardian AI News</h1>
-    <p>{{ message }}</p>
-  </body>
-</html>
+{% include "header.html" %}
+
+<div class="container mt-3 mt-md-5">
+  <div class="row">
+    <main id="mainContent" class="col-12 col-md-9 ps-3 ps-md-5">
+      <div class="mb-5">
+        <form
+          action="{{ url_for('choose_articles') }}"
+          method="get"
+          class="card p-3 shadow-sm mb-4"
+        >
+          <!-- <h2 class="h4 fw-bold mb-3">Choose your stories and level</h2> -->
+
+          <div class="row g-3 align-items-end">
+            <div class="col-12 col-md-5">
+              <label for="topic" class="form-label">Topic</label>
+              <select id="topic" name="topic" class="form-select" required>
+                {% for topic in topics %}
+                <option value="{{ topic.value }}">
+                  {{ topic.value.replace("_", " ").title() }}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <label for="level" class="form-label">Level</label>
+              <select id="level" name="level" class="form-select" required>
+                {% for level in levels %}
+                <option value="{{ level.value }}">
+                  {{ level.value.upper() }}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="col-12 col-md-3">
+              <button type="submit" class="btn btn-primary w-100">
+                Get stories
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      {% for article in articles %}
+      <div class="row mb-5 align-items-center">
+        <div class="col-12 col-lg-8 order-2 order-lg-1">
+          <a
+            href="{{ url_for('get_body', article_id=article.id, level=article.level) }}"
+            class="text-decoration-none text-dark"
+          >
+            <h2 class="fw-bold">{{ article.headline }}</h2>
+            <h3 class="h6 text-muted">{{ article.subheadline }}</h3>
+          </a>
+
+          <div
+            class="post-meta d-flex align-items-center flex-wrap gap-2 mb-1 mb-md-3"
+          >
+            <span class="text-muted small"> {{ article.publication_date or article.created_on }} </span>
+
+            <span class="badge rounded-pill bg-primary text-light px-3">
+              {{ article.topic }}
+            </span>
+
+            <span class="badge rounded-pill bg-secondary text-light px-3">
+              {{ article.level|upper }}
+            </span>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-4 order-1 order-lg-2 mb-3 mb-lg-0">
+          {% if article.thumbnail %}
+          <img
+            src="{{ article.thumbnail }}"
+            class="img-fluid rounded"
+            alt="{{ article.headline }}"
+          />
+          {% endif %}
+        </div>
+      </div>
+      <hr />
+      {% endfor %}
+    </main>
+  </div>
+</div>
+
+{% include "footer.html" %}

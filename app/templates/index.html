@@ -25,7 +25,7 @@
 
           <div class="post-meta d-flex align-items-center flex-wrap gap-2 mb-1 mb-md-3">
             <span class="text-muted small">
-              {{ article.created_on }}
+             Published {{ article.publication_date or article.created_on }}
             </span>
 
             <span class="badge rounded-pill bg-primary text-light px-3">

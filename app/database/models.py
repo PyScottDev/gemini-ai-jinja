@@ -1,5 +1,6 @@
 from sqlmodel import SQLModel, Field
 from datetime import date
+import json
 
 class SimplifiedArticles(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
@@ -12,6 +13,8 @@ class SimplifiedArticles(SQLModel, table=True):
     body: str | None = None 
     thumbnail: str | None = None
     questions: str | None = None
+    web_url: str | None = None
+    publication_date: str | None = None
     
     
     

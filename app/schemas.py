@@ -27,6 +27,8 @@ class ArticleBase(SQLModel):
 class ArticlePreview(ArticleBase):
     topic: NewsTopic
     thumbnail: str | None = None
+    web_url: str | None = None
+    publication_date: str | None = None
     
 class ArticleFull(ArticleBase):
     topic: NewsTopic

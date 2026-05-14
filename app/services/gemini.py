@@ -89,7 +89,8 @@ async def simplify_body(article: ArticleFull, level: str):
     - Use level appropriate grammar and structures. 
     - Keep names, places, and numbers the same.
     - Do not add extra information. 
-    - Write in paragraphs following the style of the original.
+    - Structure the text in paragraphs.
+    - If the original article has many details, select only the most important information.
     Output
     - Return the result strictly in JSON format with the keys "guardian_id", "headline", "subheadline" "body" and "questions".
     - Questions should be returned as a Python list. 

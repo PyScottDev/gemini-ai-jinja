@@ -2,9 +2,51 @@
 from datetime import date
 import json
 from sqlmodel import Session, select
+import random
 
 from app.database.models import SimplifiedArticles
-from app.schemas import GeminiHeadlines, GeminiBody, ArticlePreview, ArticleFull
+from app.schemas import GeminiHeadlines, GeminiBody, ArticlePreview, ArticleFull, EnglishLevel, NewsTopic
+
+
+def homepage_articles(session: Session):
+    articles = []
+    used_ids = set()
+
+    levels = list(EnglishLevel)
+
+    for index, topic in enumerate(NewsTopic):
+        level = levels[index % len(levels)]
+
+        statement = (
+            select(SimplifiedArticles)
+            .where(
+                SimplifiedArticles.topic == topic.value,
+                SimplifiedArticles.level == level.value,
+            )
+            .order_by(SimplifiedArticles.created_on.desc())
+            .limit(1)
+        )
+
+        article = session.exec(statement).first()
+
+        if article is None:
+            fallback_statement = (
+                select(SimplifiedArticles)
+                .where(SimplifiedArticles.topic == topic.value)
+                .order_by(SimplifiedArticles.created_on.desc())
+                .limit(1)
+            )
+
+            article = session.exec(fallback_statement).first()
+
+        if article and article.id not in used_ids:
+            articles.append(article)
+            used_ids.add(article.id)
+        
+        random.shuffle(articles)
+
+    return articles
+
 
 def article_check(
     session: Session,
@@ -56,6 +98,8 @@ def create_headlines(
            headline=article.headline,
            subheadline=article.subheadline,
            thumbnail=original_article.thumbnail if original_article else None,
+           web_url=original_article.web_url if original_article else None,
+           publication_date=original_article.publication_date if original_article else None,
        )
         
         session.add(db_article)

@@ -70,8 +70,37 @@
             <span class="brand-tagline lh-sm small"
               >Stories and reflections from our students</span
             >
-          </span>
+            </span>
         </a>
+        <!-- <div class="d-none d-lg-flex flex-grow-1 justify-content-center">
+        <form
+          action="{{ url_for('choose_articles') }}"
+          method="get"
+          class="d-flex align-items-center gap-2"
+        >
+          <label for="nav-topic" class="visually-hidden">Topic</label>
+          <select id="nav-topic" name="topic" class="form-select form-select-sm" required>
+            {% for topic in topics %}
+              <option value="{{ topic.value }}">
+                {{ topic.value.replace("_", " ").title() }}
+              </option>
+            {% endfor %}
+          </select>
+
+          <label for="nav-level" class="visually-hidden">Level</label>
+          <select id="nav-level" name="level" class="form-select form-select-sm" required>
+            {% for level in levels %}
+              <option value="{{ level.value }}">
+                {{ level.value.upper() }}
+              </option>
+            {% endfor %}
+          </select>
+
+          <button type="submit" class="btn btn-primary btn-sm">
+            Go
+          </button>
+        </form>
+      </div> -->
         <button
           class="navbar-toggler d-none"
           type="button"
@@ -167,6 +196,57 @@
               <span>Home</span>
             </a>
           </li>
+
+          <li class="mb-1">
+            <button
+              class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#news-collapse"
+              aria-expanded="false"
+            >
+              News Search
+            </button>
+
+            <div class="collapse" id="news-collapse">
+              <form
+                action="{{ url_for('choose_articles') }}"
+                method="get"
+                class="ps-4 pe-3 pb-3 pt-2"
+              >
+                <select
+                  id="sidebar-topic"
+                  name="topic"
+                  class="form-select form-select-sm mb-2"
+                  required
+                >
+                  {% for topic in topics %}
+                    <option value="{{ topic.value }}">
+                      {{ topic.value.replace("_", " ").title() }}
+                    </option>
+                  {% endfor %}
+                </select>
+
+                <select
+                  id="sidebar-level"
+                  name="level"
+                  class="form-select form-select-sm mb-2"
+                  required
+                >
+                  {% for level in levels %}
+                    <option value="{{ level.value }}">
+                      {{ level.value.upper() }}
+                    </option>
+                  {% endfor %}
+                </select>
+
+                <button type="submit" class="btn btn-primary btn-sm w-100">
+                  Go
+                </button>
+              </form>
+            </div>
+          </li>
+
+
 
           {#
           {% if current_user.is_authenticated %}

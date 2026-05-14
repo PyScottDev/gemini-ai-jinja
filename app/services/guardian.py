@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import httpx
 import os
+from datetime import datetime
 
 from app.schemas import ArticlePreview, ArticleFull
 
@@ -10,6 +11,13 @@ load_dotenv()
 GUARDIAN_API = os.getenv("GUARDIAN_API_KEY")
 GUARDIAN_CONTENT = "https://content.guardianapis.com/search"
 GUARDIAN_ARTICLE = "https://content.guardianapis.com/"
+
+def readable_guardian_date(date_string: str | None):
+    if not date_string:
+        return None
+
+    date_object = datetime.fromisoformat(date_string.replace("Z", "+00:00"))
+    return date_object.strftime("%d %B %Y").lstrip("0")
 
 async def fetch_articles(topic: str):
    parm_content = {
@@ -35,6 +43,8 @@ async def fetch_articles(topic: str):
       subheadline=result["fields"].get("trailText"),
       thumbnail=result["fields"].get("thumbnail"),
       topic=result.get("sectionId"),
+      web_url=result.get("webUrl"),
+      publication_date=readable_guardian_date(result.get("webPublicationDate")),
       )
       for result in results
    ]

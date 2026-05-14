@@ -6,6 +6,9 @@
       <article class="post-content">
         <h1 class="display-4 fw-bold text-dark mb-3">{{ article.headline }}</h1>
         <p class="lead text-muted mb-4">{{ article.subheadline }}</p>
+        <span class="text-muted small text-nowrap">
+          Published {{ article.publication_date or article.created_on }}
+        </span>
 
         <div class="d-flex align-items-center gap-2 gap-md-3 mb-3 mb-md-4">
           <img
