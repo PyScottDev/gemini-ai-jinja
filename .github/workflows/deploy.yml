@@ -25,7 +25,13 @@ jobs:
       - name: Install FastAPI Cloud CLI
         run: |
           python -m pip install --upgrade pip
-          pip install fastapi-cli fastapi-cloud-cli
+          python -m pip install --user "fastapi[standard]" fastapi-cloud-cli
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Check FastAPI CLI is available
+        run: |
+          which fastapi
+          fastapi --help
 
       - name: Deploy to FastAPI Cloud
         run: fastapi deploy
