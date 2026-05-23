@@ -26,6 +26,8 @@ else:
     engine = create_engine(
         database_url,
         echo=True,
+        pool_pre_ping=True,
+        pool_recycle=300,
     )
 
 def create_db_and_tables():
