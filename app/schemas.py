@@ -38,7 +38,12 @@ class ArticleFull(ArticleBase):
 class GeminiHeadlines(ArticleBase):
     pass
 
+class VocabularyItem(SQLModel):
+    word: str
+    definition: str
+
 class GeminiBody(ArticleBase):
     body: str
     questions: list[str] = Field(default_factory=list)
-    
+    vocabulary: list[VocabularyItem] = Field(default_factory=list)
+    word_count: int | None = None

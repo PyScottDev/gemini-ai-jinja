@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Student voices</title>
+    <title>Levelled News</title>
     {% block styles %}
       <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -17,7 +17,7 @@
     <link
       rel="icon"
       type="image/x-icon"
-      href="{{ url_for('static', path='/assets/student-voices-icon.png') }}"
+      href="{{ url_for('static', path='/assets/levelled-favicon.png') }}"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,7 +49,7 @@
       <div class="container-fluid ps-0 pe-2 d-flex flex-nowrap align-items-center">
         <button
           id="menuToggle"
-          class="btn btn-link text-dark text-decoration-none p-1 ms-2 ps-md-4 pe-md-3 me-1 mx-md-2
+          class="btn btn-link text-dark text-decoration-none p-1 ms-1 me-0 ps-md-4 pe-md-3 mx-md-2"
           type="button"
           aria-label="Toggle sidebar"
         >
@@ -57,18 +57,18 @@
         </button>
 
         <a
-          class="navbar-brand d-flex align-items-center gap-2 pe-md-3 text-wrap"
+            class="navbar-brand d-flex align-items-center gap-1 gap-md-2 pe-md-3 text-wrap"
           href="{{ url_for('home') }}"
         >
           <img
-            src="{{ url_for('static', path='/assets/img/fl-logo.svg') }}"
-            alt="Future Learning logo"
+            src="{{ url_for('static', path='/assets/img/levelled-logo.png') }}"
+            alt="Levelled News logo"
             height="62"
           />
           <span class="brand-text d-flex flex-column">
-            <span class="brand-title">Student voices</span>
+            <span class="brand-title">Levelled News</span>
             <span class="brand-tagline lh-sm small"
-              >Stories and reflections from our students</span
+              >Real news, rewritten for you</span
             >
             </span>
         </a>
@@ -181,7 +181,7 @@
       data-bs-scroll="true"
     >
       <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title" id="sidebarMenuLabel">Collapsible</h5>
+        <h5 class="offcanvas-title" id="sidebarMenuLabel">Menu</h5>
       </div>
 
       <div class="offcanvas-body">

@@ -9,7 +9,7 @@ from app.services.guardian import fetch_articles, fetch_body
 from app.services.gemini import simplify_headline, simplify_body
 from app.schemas import ArticlePreview, GeminiHeadlines, GeminiBody, NewsTopic, EnglishLevel
 from app.database.session import create_db_and_tables, SessionDep
-from app.database.crud import article_check, db_full, create_headlines, update_body, homepage_articles
+from app.database.crud import topic_level_checked_today, db_full, create_headlines, update_body, homepage_articles, id_level_check, articles_for_topic_level, create_topic_level_check
 from app.database.models import SimplifiedArticles
 
 @asynccontextmanager
@@ -85,24 +85,44 @@ async def get_articles(
     session: SessionDep,
     ):
     
-    existing_articles = article_check(session, topic.value, level.value)
+    existing_check = topic_level_checked_today(session, topic.value, level.value)
     
-    if existing_articles:
-        articles = existing_articles
+    if existing_check:
+        articles = articles_for_topic_level(
+            session,
+            topic.value,
+            level.value,
+        )
     else:
         guardian_articles = await fetch_articles(topic.value)
-        simplified_headlines = await simplify_headline(
+        saved_articles, new_articles = id_level_check(
+            session,
             guardian_articles,
+            level.value
+            )
+        if new_articles:
+            simplified_headlines = await simplify_headline(
+                new_articles,
+                level.value,
+            )
+            
+            newly_saved_articles = create_headlines(
+                session=session,
+                original_articles=new_articles,
+                simplified_articles=simplified_headlines,
+                topic=topic.value,
+                level=level.value,  
+                )
+        else:
+            newly_saved_articles = []
+            
+        create_topic_level_check(
+            session,
+            topic.value,
             level.value,
         )
         
-        articles = create_headlines(
-            session=session,
-            original_articles=guardian_articles,
-            simplified_articles=simplified_headlines,
-            topic=topic.value,
-            level=level.value,  
-            )
+        articles = saved_articles + newly_saved_articles
         
     return templates.TemplateResponse(
         name="index.html",
@@ -134,6 +154,7 @@ async def get_body(
         article = update_body(session, db_article, simplified_body)
         
     questions = []
+    vocabulary = []
 
     if article.questions:
         try:
@@ -141,12 +162,20 @@ async def get_body(
         except json.JSONDecodeError:
             questions = []
             
+    if article.vocabulary:
+        try:
+            vocabulary = json.loads(article.vocabulary)
+        except json.JSONDecodeError:
+            vocabulary = []
+            
     return templates.TemplateResponse(
         name="article.html",
         request=request,
         context={
             "article": article,
             "questions": questions,
+            "vocabulary": vocabulary,
+            "word_count": article.word_count,
         }
     )
 

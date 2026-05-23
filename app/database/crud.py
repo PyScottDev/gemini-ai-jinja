@@ -4,7 +4,7 @@ import json
 from sqlmodel import Session, select
 import random
 
-from app.database.models import SimplifiedArticles
+from app.database.models import SimplifiedArticles, TopicLevelCheck
 from app.schemas import GeminiHeadlines, GeminiBody, ArticlePreview, ArticleFull, EnglishLevel, NewsTopic
 
 
@@ -43,12 +43,12 @@ def homepage_articles(session: Session):
             articles.append(article)
             used_ids.add(article.id)
         
-        random.shuffle(articles)
+    random.shuffle(articles)
 
     return articles
 
 
-def article_check(
+def topic_level_checked_today(
     session: Session,
     topic: str,
     level: str
@@ -56,13 +56,71 @@ def article_check(
     
     today = date.today()
     
-    statement = select(SimplifiedArticles).where(
-        SimplifiedArticles.topic == topic,
-        SimplifiedArticles.level == level,
-        SimplifiedArticles.created_on == today,
+    statement = select(TopicLevelCheck).where(
+        TopicLevelCheck.topic == topic,
+        TopicLevelCheck.level == level,
+        TopicLevelCheck.checked_on == today,
     )
     
+    return session.exec(statement).first()
+
+def articles_for_topic_level(
+    session: Session,
+    topic: str,
+    level: str,
+):
+    statement = (
+        select(SimplifiedArticles)
+        .where(
+            SimplifiedArticles.topic == topic,
+            SimplifiedArticles.level == level,
+        )
+        .order_by(SimplifiedArticles.created_on.desc())
+        .limit(12)
+    )
+
     return list(session.exec(statement).all())
+
+def create_topic_level_check(
+    session: Session,
+    topic: str,
+    level: str,
+):
+    today = date.today()
+
+    check = TopicLevelCheck(
+        topic=topic,
+        level=level,
+        checked_on=today,
+    )
+
+    session.add(check)
+    session.commit()
+    session.refresh(check)
+
+    return check
+
+def id_level_check(
+    session: Session,
+    guardian_articles: list[ArticlePreview],
+    level: str
+    ):
+    saved_articles = []
+    new_articles = []
+    for article in guardian_articles:
+        statement = select(SimplifiedArticles).where(
+            SimplifiedArticles.guardian_id == article.guardian_id,
+            SimplifiedArticles.level == level,
+        )
+        saved_article = session.exec(statement).first()
+        
+        if saved_article:
+            saved_articles.append(saved_article)
+        else:
+            new_articles.append(article)
+        
+    return saved_articles, new_articles
+    
 
 def db_full(
     session: Session,
@@ -122,10 +180,14 @@ def update_body(
     db_article.subheadline = simplified_body.subheadline
     db_article.body = simplified_body.body
     db_article.questions = json.dumps(simplified_body.questions, ensure_ascii=False)
-    
+    db_article.vocabulary = json.dumps(
+    [item.model_dump() for item in simplified_body.vocabulary],
+    ensure_ascii=False,
+    )
+    db_article.word_count = simplified_body.word_count
     session.add(db_article)
     session.commit()
-    session.refresh(db_article)
+    session.refresh(db_article) 
     return db_article
     
         

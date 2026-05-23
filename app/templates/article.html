@@ -6,9 +6,18 @@
       <article class="post-content">
         <h1 class="display-4 fw-bold text-dark mb-3">{{ article.headline }}</h1>
         <p class="lead text-muted mb-4">{{ article.subheadline }}</p>
-        <span class="text-muted small text-nowrap">
-          Published {{ article.publication_date or article.created_on }}
-        </span>
+        <div
+          class="article-meta text-muted small d-flex flex-wrap align-items-center gap-2 mb-3"
+        >
+          <span>
+            Published {{ article.publication_date or article.created_on }}
+          </span>
+
+          {% if word_count %}
+          <span aria-hidden="true">·</span>
+          <span>{{ word_count }} words</span>
+          {% endif %}
+        </div>
 
         <div class="d-flex align-items-center gap-2 gap-md-3 mb-3 mb-md-4">
           <img
@@ -40,6 +49,23 @@
 
         <hr />
 
+        {% if vocabulary %}
+        <section class="vocabulary-section mt-5 mb-5">
+          <h4 class="mb-4">Vocabulary</h4>
+
+          <div class="list-group">
+            {% for item in vocabulary %}
+            <div class="list-group-item">
+              <strong>{{ item.word }}</strong>
+              <span class="text-muted">— {{ item.definition }}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+        {% endif %}
+
+        <hr />
+
         <div class="comment-section mt-5">
           <h4 class="mb-4">Discussion Questions</h4>
 
@@ -53,6 +79,23 @@
           <p class="text-muted">No discussion questions available.</p>
           {% endif %}
         </div>
+        {% if article.web_url %}
+        <hr />
+
+        <section class="original-article-section mt-5 mb-5">
+          <p class="text-muted mb-3">
+            Based on an article from The Guardian.
+          </p>
+          <a
+            href="{{ article.web_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline-primary"
+          >
+            Read the original article
+          </a>
+        </section>
+        {% endif %}
       </article>
     </div>
   </div>
