@@ -43,10 +43,25 @@
         const sidebarElement = document.getElementById("sidebarMenu");
 
         if (menuButton && sidebarElement) {
-            const sidebar = bootstrap.Offcanvas.getOrCreateInstance(sidebarElement);
             const desktopBreakpoint = window.matchMedia("(min-width: 992px)");
+            let sidebar = null;
 
-            function setInitialSidebarState() {
+            function createSidebar() {
+            const existingSidebar = bootstrap.Offcanvas.getInstance(sidebarElement);
+
+            if (existingSidebar) {
+                existingSidebar.dispose();
+            }
+
+            sidebar = new bootstrap.Offcanvas(sidebarElement, {
+                backdrop: !desktopBreakpoint.matches,
+                scroll: desktopBreakpoint.matches
+            });
+            }
+
+            function setSidebarState() {
+            createSidebar();
+
             if (desktopBreakpoint.matches) {
                 sidebar.show();
                 document.body.classList.add("sidebar-open");
@@ -57,6 +72,10 @@
             }
 
             menuButton.addEventListener("click", function () {
+            if (!sidebar) {
+                createSidebar();
+            }
+
             sidebar.toggle();
             });
 
@@ -68,10 +87,10 @@
             document.body.classList.remove("sidebar-open");
             });
 
-            setInitialSidebarState();
+            setSidebarState();
 
-            desktopBreakpoint.addEventListener("change", setInitialSidebarState);
-            }
+            desktopBreakpoint.addEventListener("change", setSidebarState);
+        }
         </script>
   </body>
 </html>

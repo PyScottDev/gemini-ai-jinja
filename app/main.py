@@ -9,7 +9,7 @@ from app.services.guardian import fetch_articles, fetch_body
 from app.services.gemini import simplify_headline, simplify_body
 from app.schemas import ArticlePreview, GeminiHeadlines, GeminiBody, NewsTopic, EnglishLevel
 from app.database.session import create_db_and_tables, SessionDep
-from app.database.crud import topic_level_checked_today, db_full, create_headlines, update_body, homepage_articles, id_level_check, articles_for_topic_level, create_topic_level_check
+from app.database.crud import topic_level_checked_today, db_full, create_headlines, update_body, homepage_articles, id_level_check, articles_for_topic_level, create_topic_level_check, articles_for_level, articles_for_topic
 from app.database.models import SimplifiedArticles
 
 @asynccontextmanager
@@ -49,6 +49,44 @@ def home(request: Request, session: SessionDep):
            "articles": articles
        }
     )
+    
+@app.get("/topic/{topic}", response_class=HTMLResponse)
+def articles_by_topic(
+    request: Request,
+    topic: NewsTopic,
+    session: SessionDep,
+):
+    articles = articles_for_topic(session, topic.value)
+
+    return templates.TemplateResponse(
+        name="index.html",
+        request=request,
+        context={
+            "articles": articles,
+            "topic": topic,
+            "level": "Mixed",
+        },
+    )
+    
+    
+@app.get("/level/{level}", response_class=HTMLResponse)
+def articles_by_level(
+    request: Request,
+    level: EnglishLevel,
+    session: SessionDep,
+):
+    articles = articles_for_level(session, level.value)
+
+    return templates.TemplateResponse(
+        name="index.html",
+        request=request,
+        context={
+            "articles": articles,
+            "topic": "Mixed topics",
+            "level": level,
+        },
+    )
+
 
 @app.get("/choose")
 def choose_articles(
@@ -129,7 +167,7 @@ async def get_articles(
         request=request,
         context={
             "articles": articles,
-            "topic": topic,
+            "topic": topic.value,
             "level": level,
         },
     )
@@ -177,6 +215,13 @@ async def get_body(
             "vocabulary": vocabulary,
             "word_count": article.word_count,
         }
+    )
+
+@app.get("/about", response_class=HTMLResponse)
+def about(request: Request):
+    return templates.TemplateResponse(
+        name="about.html",
+        request=request
     )
 
 # @app.get("/article/{article_id}/{level}", response_model=SimplifiedArticles)

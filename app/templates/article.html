@@ -5,43 +5,47 @@
     <div class="col-md-10 col-lg-8 ms-md-5 ps-md-5">
       <article class="post-content">
         <h1 class="display-4 fw-bold text-dark mb-3">{{ article.headline }}</h1>
+
         <p class="lead text-muted mb-4">{{ article.subheadline }}</p>
+
         <div
-          class="article-meta text-muted small d-flex flex-wrap align-items-center gap-2 mb-3"
+          class="article-meta d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-2 mb-3 mb-md-4"
         >
-          <span>
-            Published {{ article.publication_date or article.created_on }}
-          </span>
-
-          {% if word_count %}
-          <span aria-hidden="true">·</span>
-          <span>{{ word_count }} words</span>
-          {% endif %}
-        </div>
-
-        <div class="d-flex align-items-center gap-2 gap-md-3 mb-3 mb-md-4">
-          <img
-            src="{{ article.thumbnail }}"
-            class="rounded-circle border"
-            style="width: 45px; height: 45px; object-fit: cover"
-          />
-
-          <div
-            class="d-flex flex-column flex-md-row gap-1 gap-md-2 align-items-end align-items-md-center"
-          >
-            <span class="badge rounded-pill bg-primary px-2 px-md-3">
-              {{ article.topic }}
+          <div class="text-muted small">
+            <span>
+              Published {{ article.publication_date or article.created_on }}
             </span>
-            <span class="badge rounded-pill bg-secondary px-2 px-md-3">
-              {{ article.level }}
-            </span>
+
+            {% if word_count %}
+            <span aria-hidden="true">·</span>
+            <span>{{ word_count }} words</span>
+            {% endif %}
+          </div>
+
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <a
+              href="{{ url_for('articles_by_topic', topic=article.topic) }}"
+              class="badge rounded-pill bg-primary text-light px-3 text-decoration-none"
+            >
+              {{ article.topic|upper }}
+            </a>
+
+            <a
+              href="{{ url_for('articles_by_level', level=article.level) }}"
+              class="badge rounded-pill bg-secondary text-light px-3 text-decoration-none"
+            >
+              {{ article.level|upper }}
+            </a>
           </div>
         </div>
+
+        {% if article.thumbnail %}
         <img
           src="{{ article.thumbnail }}"
-          class="img-fluid rounded-4 shadow-sm mb-2 mb-mb-5 w-100"
+          class="img-fluid rounded-4 shadow-sm mb-4 w-100"
           alt="{{ article.headline }}"
         />
+        {% endif %}
 
         <div class="blog-body text-dark lh-lg fs-5 mb-5">
           {{ article.body|safe }}
@@ -83,9 +87,7 @@
         <hr />
 
         <section class="original-article-section mt-5 mb-5">
-          <p class="text-muted mb-3">
-            Based on an article from The Guardian.
-          </p>
+          <p class="text-muted mb-3">Based on an article from The Guardian.</p>
           <a
             href="{{ article.web_url }}"
             target="_blank"

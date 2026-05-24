@@ -190,4 +190,33 @@ def update_body(
     session.refresh(db_article) 
     return db_article
     
+    
+def articles_for_topic(
+    session: Session,
+    topic: str,
+    limit: int = 12,
+):
+    statement = (
+        select(SimplifiedArticles)
+        .where(SimplifiedArticles.topic == topic)
+        .order_by(SimplifiedArticles.created_on.desc())
+        .limit(limit)
+    )
+
+    return list(session.exec(statement).all())
+
+
+def articles_for_level(
+    session: Session,
+    level: str,
+    limit: int = 12,
+):
+    statement = (
+        select(SimplifiedArticles)
+        .where(SimplifiedArticles.level == level)
+        .order_by(SimplifiedArticles.created_on.desc())
+        .limit(limit)
+    )
+
+    return list(session.exec(statement).all())
         

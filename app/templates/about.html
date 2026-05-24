@@ -1,45 +1,168 @@
 {% include "header.html" %}
 
-<!-- Page Header-->
-<header
-  class="masthead"
-  style="background-image: url('../static/assets/img/about-bg.jpg')"
->
-  <div class="container position-relative px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-md-10 col-lg-8 col-xl-7">
-        <div class="page-heading">
-          <h1>About Me</h1>
-          <span class="subheading">This is what I do.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-<!-- Main Content-->
-<main class="mb-4">
-  <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-md-10 col-lg-8 col-xl-7">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-          nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis
-          sit soluta odio, adipisci quas excepturi maxime quae totam ducimus
-          consectetur?
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
-          praesentium recusandae illo eaque architecto error, repellendus iusto
-          reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in
-          officia voluptas voluptatibus, minus!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
-          consequuntur magnam, excepturi aliquid ex itaque esse est vero natus
-          quae optio aperiam soluta voluptatibus corporis atque iste neque sit
-          tempora!
-        </p>
-      </div>
+<main id="mainContent" class="container mt-3 mt-md-5 pt-0 pt-md-4">
+  <div class="row">
+    <div class="col-12 col-md-9 ps-3 ps-md-5">
+      <article class="post-content">
+        <header class="about-page-header text-center mb-5">
+          <h1 class="display-4 fw-bold text-dark mb-3">Levelled News</h1>
+
+          <img
+            src="{{ url_for('static', path='/assets/img/levelled-news-about.png') }}"
+            alt="Levelled News"
+            class="about-page-logo img-fluid mb-3"
+          />
+
+          <p class="lead text-muted mb-0">
+            Choose a topic. Choose a level. Understand the news.
+          </p>
+        </header>
+        <section
+          class="card shadow-sm border-0 rounded-4 p-3 p-md-4 mb-5 dictionary-card"
+        >
+          <div class="dictionary-entry">
+            <div
+              class="d-flex flex-wrap align-items-baseline gap-2 gap-md-3 mb-3"
+            >
+              <h2 class="fw-bold mb-0">levelled</h2>
+
+              <p class="text-muted pronunciation mb-0">/ˈlevəld/</p>
+
+              <p class="text-uppercase text-muted small fw-bold mb-0 word-type">
+                adjective
+              </p>
+            </div>
+            <div class="mb-3">
+              <p class="fw-bold definition-title mb-1">
+                1. Adapted to a suitable difficulty.
+              </p>
+              <p class="definition-text mb-0">
+                A text made clearer and more manageable for a learner’s English
+                level.
+              </p>
+            </div>
+
+            <div>
+              <p class="fw-bold definition-title mb-1">
+                2. Conquered; made manageable.
+              </p>
+              <p class="definition-text mb-0">
+                A difficult story broken down and brought within reach.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="fs-5 lh-lg">
+            Levelled News helps English learners read real stories from the news
+            without getting blocked by difficult language.
+          </p>
+        </section>
+
+        <hr class="about-divider" />
+
+        <section class="mb-5">
+          <h2 class="h3 fw-bold mb-3">The numbers</h2>
+
+          <ul class="fs-5 lh-lg">
+            <li><strong>8</strong> topics</li>
+            <li><strong>4</strong> levels</li>
+            <li><strong>12</strong> stories per topic</li>
+            <li><strong>96</strong> stories per level</li>
+            <li><strong>384</strong> stories levelled every day</li>
+          </ul>
+        </section>
+
+        <hr class="about-divider" />
+
+        <section class="mb-5">
+          <h2 class="h3 fw-bold mb-3">How to use the site</h2>
+
+          <ul class="fs-5 lh-lg">
+            <li>Choose your topic</li>
+            <li>Choose your level</li>
+            <li>Pick a story</li>
+            <li>Read the levelled version</li>
+            <li>Read some interesting stories you can understand</li>
+          </ul>
+        </section>
+
+        <hr class="about-divider" />
+
+        <section class="mb-5">
+          <h2 class="h3 fw-bold mb-3">How it works</h2>
+
+          <ul class="fs-5 lh-lg">
+            <li>Levelled News starts with real articles from The Guardian.</li>
+            <li>AI rewrites the stories for A1, A2, B1, and B2 learners.</li>
+            <li>
+              The facts, names, places, and numbers are kept as close as
+              possible to the original story.
+            </li>
+            <li>The language is made clearer and easier to follow.</li>
+            <li>
+              Each story includes useful vocabulary and discussion questions.
+            </li>
+            <li>
+              Readers can open the original Guardian article from the story
+              page.
+            </li>
+          </ul>
+        </section>
+
+        <hr class="about-divider" />
+
+        <section class="mb-5">
+          <h2 class="h3 fw-bold mb-3">Upcoming features</h2>
+
+          <ul class="fs-5 lh-lg">
+            <li>Student accounts.</li>
+            <li>Saved stories.</li>
+            <li>More topic filters.</li>
+            <li>More vocabulary practice.</li>
+            <li>Listening versions of levelled stories.</li>
+            <li>An AI reading partner for discussing stories.</li>
+            <li>Comments and discussion under stories.</li>
+          </ul>
+        </section>
+
+        <hr class="about-divider" />
+
+        <section class="mb-5">
+          <h2 class="h3 fw-bold mb-3">A note about AI</h2>
+
+          <p class="fs-5 lh-lg">
+            Levelled News uses AI to rewrite real news stories for English
+            learners. AI can make mistakes, so readers should treat the levelled
+            version as a learning text, not as the final source of truth.
+          </p>
+
+          <p class="fs-5 lh-lg">
+            Each story links back to the original Guardian article, so readers
+            can check the source and continue reading at the original level.
+          </p>
+        </section>
+
+        <hr class="about-divider" />
+
+        <section class="mb-5">
+          <h2 class="h3 fw-bold mb-3">Use it for learning or teaching</h2>
+
+          <ul class="fs-5 lh-lg">
+            <li>Use the stories for reading practice.</li>
+            <li>Use the vocabulary to build topic language.</li>
+            <li>
+              Use the questions for speaking, writing, or classroom discussion.
+            </li>
+            <li>
+              Use the original article when you are ready for a challenge.
+            </li>
+          </ul>
+        </section>
+
+        <hr />
+      </article>
     </div>
   </div>
 </main>
