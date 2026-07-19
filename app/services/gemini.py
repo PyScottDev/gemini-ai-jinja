@@ -1,8 +1,11 @@
 from google import genai
-from google.genai import types
+from google.genai import types, errors
 from dotenv import load_dotenv
 import os
 import json
+import asyncio
+import random
+import logging
 
 from app.schemas import ArticlePreview, GeminiHeadlines, GeminiBody, ArticleFull
 
@@ -13,6 +16,63 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=GEMINI_API_KEY)
 model = "gemini-2.5-flash-lite"
 #model = "Gemini 2.0 Flash"
+
+logger = logging.getLogger(__name__)
+
+RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
+
+
+async def generate_content_with_retries(
+    prompt: str,
+    attempts: int = 5,
+    base_delay: float = 1.0,
+    max_delay: float = 12.0,
+):
+    """
+    Call Gemini with retries for temporary failures such as:
+    - 429 rate limit
+    - 500/502/503/504 server or availability errors
+
+    Uses exponential backoff with a little random jitter.
+    """
+
+    last_error = None
+
+    for attempt in range(1, attempts + 1):
+        try:
+            return await asyncio.to_thread(
+                client.models.generate_content,
+                model=model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    response_mime_type="application/json",
+                ),
+            )
+
+        except errors.APIError as exc:
+            last_error = exc
+            status_code = getattr(exc, "status_code", None)
+
+            if status_code not in RETRYABLE_STATUS_CODES:
+                raise
+
+            if attempt == attempts:
+                raise
+
+            delay = min(max_delay, base_delay * (2 ** (attempt - 1)))
+            delay += random.uniform(0, 0.75)
+
+            logger.warning(
+                "Gemini API error %s on attempt %s/%s. Retrying in %.2f seconds.",
+                status_code,
+                attempt,
+                attempts,
+                delay,
+            )
+
+            await asyncio.sleep(delay)
+
+    raise last_error
 
 LEVEL_SETTINGS = {
     "a1": {
@@ -47,6 +107,14 @@ LEVEL_SETTINGS = {
         "paragraph_min": 4,
         "paragraph_max": 6,
     },
+    "c1": {
+        "target_min": 550,
+        "target_max": 750,
+        "hard_max": 850,
+        "vocab_items": 10,
+        "paragraph_min": 5,
+        "paragraph_max": 7,
+    },
 }
 
 # headline = "Global outcry after US launches strikes on Venezuela and captures president"
@@ -78,13 +146,16 @@ async def simplify_headline(articles: list[ArticlePreview], level: str):
     {json.dumps(gemini_items, ensure_ascii=False)}
     """
 
-    response = client.models.generate_content(
-        model=model, 
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            response_mime_type="application/json",
-        ),
-    )
+    # response = client.models.generate_content(
+    #     model=model, 
+    #     contents=prompt,
+    #     config=types.GenerateContentConfig(
+    #         response_mime_type="application/json",
+    #     ),
+    # )
+    
+    response = await generate_content_with_retries(prompt)
+    
     data = json.loads(response.text)
     
     simplified_headlines = []
@@ -193,13 +264,14 @@ async def simplify_body(article: ArticleFull, level: str):
     {json.dumps(simplified_body.model_dump(), ensure_ascii=False)}
     """
 
-    response = client.models.generate_content(
-        model=model, 
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            response_mime_type="application/json",
-        ),
-    )
+    # response = client.models.generate_content(
+    #     model=model, 
+    #     contents=prompt,
+    #     config=types.GenerateContentConfig(
+    #         response_mime_type="application/json",
+    #     ),
+    # )
+    response = await generate_content_with_retries(prompt)
     data = json.loads(response.text)
     return GeminiBody(
     guardian_id=data["guardian_id"],

@@ -17,6 +17,7 @@ class EnglishLevel(str, Enum):
    a2 = "a2"
    b1 = "b1"
    b2 = "b2"
+   c1 = "c1"
 
 
 class ArticleBase(SQLModel):

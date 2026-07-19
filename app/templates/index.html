@@ -18,26 +18,26 @@
             <h3 class="h6 text-muted">{{ article.subheadline }}</h3>
           </a>
 
-          <div
-            class="post-meta d-flex align-items-center flex-wrap gap-2 mb-1 mb-md-3"
-          >
-            <span class="text-muted small">
+          <div class="post-meta mb-1 mb-md-3">
+            <div class="text-muted small mb-2">
               Published {{ article.publication_date or article.created_on }}
-            </span>
+            </div>
 
-            <a
-              href="{{ url_for('articles_by_topic', topic=article.topic) }}"
-              class="badge rounded-pill bg-primary text-light px-3 text-decoration-none"
-            >
-              {{ article.topic|upper }}
-            </a>
+            <div class="d-flex align-items-center flex-wrap gap-2">
+              <a
+                href="{{ url_for('articles_by_topic', topic=article.topic) }}"
+                class="badge rounded-pill bg-primary text-light px-3 text-decoration-none"
+              >
+                {{ article.topic|upper }}
+              </a>
 
-            <a
-              href="{{ url_for('articles_by_level', level=article.level) }}"
-              class="badge rounded-pill bg-secondary text-light px-3 text-decoration-none"
-            >
-              {{ article.level|upper }}
-            </a>
+              <a
+                href="{{ url_for('articles_by_level', level=article.level) }}"
+                class="badge rounded-pill bg-secondary text-light px-3 text-decoration-none"
+              >
+                {{ article.level|upper }}
+              </a>
+            </div>
           </div>
         </div>
 
