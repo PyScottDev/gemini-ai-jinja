@@ -1,0 +1,330 @@
+    :root {
+      --velvet-dark: #24070a;
+      --velvet-mid: #3d0d13;
+      --velvet-light: #5c1620;
+      --brass-gold: #e2b857;
+      --brass-bright: #f7d983;
+      --brass-dark: #9c7623;
+      --paper-cream: #f8f1dc;
+      --paper-aged: #eadbb4;
+      --wood-desk: #2c1912;
+      --wood-grain: #3d231a;
+      --stamp-green: #15803d;
+      --stamp-amber: #b45309;
+      --stamp-red: #b91c1c;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--velvet-dark);
+      background-image: 
+        radial-gradient(circle at 50% 10%, rgba(226, 184, 87, 0.12), transparent 60%),
+        repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.18) 0px, rgba(0, 0, 0, 0.18) 18px, transparent 18px, transparent 36px);
+      color: #f9f5eb;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .font-marquee {
+      font-family: 'Limelight', cursive, serif;
+      letter-spacing: 0.06em;
+    }
+
+    .font-ticket {
+      font-family: 'Courier Prime', monospace;
+    }
+
+    /* Custom Brass Border & Velvet Panels */
+    .brass-frame {
+      border: 2px solid var(--brass-gold);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55), inset 0 0 12px rgba(226, 184, 87, 0.15);
+    }
+
+    .velvet-panel {
+      background: linear-gradient(180deg, var(--velvet-mid) 0%, var(--velvet-dark) 100%);
+      border: 2px solid var(--brass-dark);
+      border-radius: 0.75rem;
+    }
+
+    .desk-surface {
+      background-color: var(--wood-desk);
+      background-image: 
+        radial-gradient(circle at 50% 35%, rgba(255, 224, 150, 0.08), rgba(0, 0, 0, 0.5)),
+        repeating-linear-gradient(180deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 2px, transparent 2px, transparent 10px);
+      border: 2px solid var(--brass-dark);
+      border-radius: 0.75rem;
+      box-shadow: inset 0 8px 28px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Perforated Vintage Ticket Styling */
+    .cinema-ticket {
+      background: linear-gradient(135deg, var(--paper-cream) 0%, var(--paper-aged) 100%);
+      color: #1e1b18;
+      border-radius: 0.5rem;
+      position: relative;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.55), 0 2px 4px rgba(0,0,0,0.3);
+      border: 2px dashed #b59e6b;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cinema-ticket::before,
+    .cinema-ticket::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      background-color: var(--wood-desk);
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+    .cinema-ticket::before { left: -12px; border-right: 2px solid #b59e6b; }
+    .cinema-ticket::after { right: -12px; border-left: 2px solid #b59e6b; }
+
+    .ticket-lounge {
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+      border-color: #0284c7;
+    }
+
+    .ticket-corrected {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-color: #d97706;
+    }
+
+    .ticket-vip {
+      background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%);
+      border-color: #9333ea;
+    }
+
+    /* Inspectable elements highlight */
+    .inspectable {
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border-radius: 0.35rem;
+      position: relative;
+    }
+
+    .inspectable:hover {
+      outline: 2px dashed #f59e0b;
+      background-color: rgba(245, 158, 11, 0.15);
+    }
+
+    .inspect-selected {
+      outline: 3px solid #facc15 !important;
+      background-color: rgba(250, 204, 21, 0.28) !important;
+      box-shadow: 0 0 12px rgba(250, 204, 21, 0.6);
+    }
+
+    .inspect-match {
+      outline: 3px solid #22c55e !important;
+      background-color: rgba(34, 197, 94, 0.25) !important;
+    }
+
+    .inspect-mismatch {
+      outline: 3px solid #ef4444 !important;
+      background-color: rgba(239, 68, 68, 0.25) !important;
+    }
+
+    /* Rubber Stamp Overlay */
+    @keyframes stampSlam {
+      0% { transform: scale(2.6) rotate(-18deg); opacity: 0; }
+      60% { transform: scale(0.92) rotate(-8deg); opacity: 1; }
+      80% { transform: scale(1.04) rotate(-8deg); opacity: 1; }
+      100% { transform: scale(1) rotate(-8deg); opacity: 0.95; }
+    }
+
+    .stamp-mark {
+      animation: stampSlam 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      border: 5px double currentColor;
+      padding: 0.35rem 1.1rem;
+      font-family: 'Courier Prime', monospace;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 0.35rem;
+      pointer-events: none;
+      box-shadow: inset 0 0 8px currentColor;
+      background-color: rgba(255, 255, 255, 0.86);
+    }
+
+    /* Customer animations */
+    @keyframes customerWalkIn {
+      0% { transform: translateY(25px) scale(0.94); opacity: 0; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .customer-enter {
+      animation: customerWalkIn 0.35s ease-out forwards;
+    }
+
+    @keyframes ticketSlideIn {
+      0% { transform: translateY(-30px) rotate(-4deg); opacity: 0; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    }
+
+    .ticket-slide {
+      animation: ticketSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Queue patience states & departure feedback */
+    @keyframes queueCriticalPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.55); }
+      50% { box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.25); }
+    }
+
+    .queue-state-critical {
+      animation: queueCriticalPulse 1.3s ease-in-out infinite;
+    }
+
+    @keyframes queueDepartFade {
+      0% { transform: translateX(0) scale(1); opacity: 0.9; }
+      100% { transform: translateX(-14px) scale(0.9); opacity: 0; }
+    }
+
+    .queue-item-departing {
+      animation: queueDepartFade 0.4s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes departureBannerSlide {
+      0% { transform: translateY(-4px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .departure-banner-enter {
+      animation: departureBannerSlide 0.22s ease-out forwards;
+    }
+
+    @keyframes warningDangerPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.65); }
+      50% { box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.35); }
+    }
+
+    .warnings-state-danger {
+      animation: warningDangerPulse 1.4s ease-in-out infinite;
+    }
+
+    /* Tactile Stamp Buttons */
+    .btn-stamp {
+      transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+      box-shadow: 0 5px 0 rgba(0, 0, 0, 0.5), 0 8px 15px rgba(0,0,0,0.35);
+    }
+    .btn-stamp:active:not(:disabled) {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5), 0 3px 6px rgba(0,0,0,0.35);
+    }
+    .btn-stamp:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--brass-dark);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--brass-gold);
+    }
+
+    textarea,input { user-select:text; }
+    button:focus-visible,.inspectable:focus-visible { outline:3px solid #38bdf8; outline-offset:3px; }
+    #compareModal .cinema-ticket { font-size:1.1rem; }
+    #compareModal #deskDocumentArea { max-width:none; }
+    main > section { min-width:0; }
+    #correctionScreeningSelect { min-width:0; max-width:100%; }
+    #customerFollowUpBox p + p { margin-top:6px; }
+    @media(max-width:1023px) {
+      body > header { position:relative !important; }
+      body > nav { top:0 !important; }
+      #colDesk > div:last-child { position:sticky; bottom:0; z-index:25; }
+      #settingsModal .flex { flex-wrap:wrap; }
+    }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } }
+
+/* Stage 2B: visible tampering on an altered ID photograph, not a verdict badge.
+   The seal sits behind the tape so it is visibly interrupted. */
+.id-photo-frame { position: relative; isolation: isolate; }
+.id-photo-frame--altered .id-photo-stamp {
+  position: absolute; left: 50%; bottom: 7px; z-index: 2;
+  width: 51px; height: 30px; border: 3px double rgba(124,25,30,.85);
+  border-radius: 50%; transform: translateX(-50%) rotate(-16deg);
+  color: rgba(124,25,30,.85); font: bold 9px 'Courier Prime', monospace;
+  letter-spacing: .04em; display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.id-photo-frame--altered .id-photo-tape {
+  position: absolute; left: -12px; bottom: 22px; z-index: 3;
+  width: 125px; height: 14px; transform: rotate(-17deg);
+  border-top: 1px solid rgba(248,240,201,.9);
+  border-bottom: 1px solid rgba(112,96,72,.5);
+  background: repeating-linear-gradient(90deg,
+    rgba(239,223,166,.82) 0 11px, rgba(251,242,202,.66) 11px 15px);
+  box-shadow: 0 1px 3px rgba(30,24,16,.35);
+  pointer-events: none;
+}
+
+/* Stage 2C: fitted costume overlays; keeps the existing booth/ID dimensions. */
+.portrait-stage { position:relative; isolation:isolate; overflow:hidden; }
+.portrait-stage > .portrait-image { display:block; }
+.portrait-costume { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+
+/* A physical ISO ID-1-style card laid over the cinema ticket. No modal or extra toolbar. */
+#deskDocumentArea { position: relative; min-height: 220px; }
+#deskDocumentArea:has(.id-desk-layer) { min-height: 330px; }
+.id-desk-layer {
+  position: absolute; top: 72px; left: 4%; z-index: 18;
+  width: 92%; max-width: 410px; filter: drop-shadow(0 12px 13px rgba(0,0,0,.6));
+}
+.id-landscape-card {
+  aspect-ratio: 85.60 / 53.98;
+  border: 2px solid #8796a8; border-radius: 12px; padding: 11px 12px;
+  background: linear-gradient(130deg,#f8fafc,#e8eff8 60%,#d9e7f0);
+  color: #1b2735; overflow: hidden; display:flex; flex-direction:column;
+}
+.id-card-heading { display: flex; align-items: start; justify-content: space-between; gap: 7px; border-bottom: 1px solid #708298; padding-bottom: 6px; margin-bottom: 7px; }
+.id-card-heading strong { display:block; font-size: clamp(11px,1.2vw,15px); letter-spacing:.04em; }
+.id-card-authority { display:block; font: bold 8px sans-serif; letter-spacing:.12em; color:#617084; }
+.id-card-controls { display:flex; gap:5px; align-items:center; }
+.id-drag-handle, .id-card-put-away { color:#334155; border:1px solid #a5b4c5; background:#eef3f9; border-radius:5px; font: bold 10px sans-serif; padding:4px 6px; touch-action:none; }
+.id-drag-handle { cursor:grab; }
+.id-drag-handle:active { cursor:grabbing; }
+.id-card-put-away { font-size:15px; line-height:11px; }
+.id-card-content { display: grid; grid-template-columns: 29% minmax(0,1fr); gap:9px; flex:1; min-height:0; }
+.id-card-photo { background:#243247; color:#fef3c7; border:1px solid #75869c; border-radius:7px; padding:5px; display:flex; flex-direction:column; justify-content:center; gap:4px; align-items:center; min-width:0; }
+.id-card-photo .id-photo-frame { width:100%; max-height: 126px; aspect-ratio: 4 / 5; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; background:#1e293b; border-radius:4px; }
+.id-card-photo .id-photo-frame > img,.id-card-photo .id-photo-frame > svg,.id-card-photo .id-photo-frame > div { width:100%; height:100%; object-fit:cover; }
+.id-photo-label { font-size:8px; text-transform:uppercase; font-weight:bold; letter-spacing:.08em; }
+.id-card-fields { display:grid; grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: repeat(4,minmax(0,1fr)); gap:3px 5px; min-height:0; }
+.id-card-field { text-align:left; min-width:0; background:rgba(255,255,255,.75); border:1px solid #bfccda; border-radius:5px; padding: 2px 5px; overflow:hidden; }
+.id-field-wide { grid-column:span 2; }
+.id-field-label { display:block; color:#65768c; text-transform:uppercase; font: bold 8px sans-serif; }
+.id-field-value { font: bold clamp(10px,1vw,13px) 'Courier Prime',monospace; display:block; overflow-wrap:anywhere; line-height:1.25; }
+.id-restore-button { display:block; margin:10px auto 0; border:1px solid #e2b857; background:#3d0d13; color:#f7d983; border-radius:5px; padding:5px 12px; font-size:12px; }
+@media(max-width:500px) {
+  .id-landscape-card { padding:8px; }
+  .id-card-heading { padding-bottom:4px; margin-bottom:5px; }
+  .id-card-content { gap:5px; }
+  .id-field-label { font-size:7px; }
+  .id-field-value { font-size:10px; }
+  .id-card-fields { gap:2px; }
+}
+
+/* Shift countdown: urgency without a flashing or misleading cinema clock. */
+.shift-time-warning { border-color: #fb7185 !important; }
+.shift-time-warning #clockDisplay { color: #fda4af !important; }

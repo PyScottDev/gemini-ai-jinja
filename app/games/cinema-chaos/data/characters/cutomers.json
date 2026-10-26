@@ -1,0 +1,1234 @@
+{
+  "schemaVersion": 1,
+  "description": "Cinema Chaos generic customer portrait roster; planned visual briefs until artwork is reviewed. Ages refer to campaign start, not current real-world date.",
+  "agePolicyNotes": {
+    "ageAtCampaignStart": "Canonical age for the campaign. Establish DOB and campaign date later if documents require calendar calculations.",
+    "apparentAgeRange": "Visual casting brief, not reliable proof of actual age.",
+    "ageVerification": "Film rating and campaign challenge policy determine checks; actual age determines eligibility; the document presented may be inaccurate or forged.",
+    "visualDesign": "Art direction metadata; verify colours, accessories, and perceived age against final cropped assets before using for gameplay rules.",
+    "ethnicBackgroundDesignBrief": "Creative variety guideline only; do not use ethnicity as an age or eligibility proxy."
+  },
+  "sheets": [
+    {
+      "id": "men-01",
+      "rows": 3,
+      "columns": 3,
+      "occupiedCells": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "men-02",
+      "rows": 3,
+      "columns": 3,
+      "occupiedCells": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "women-03",
+      "rows": 3,
+      "columns": 3,
+      "occupiedCells": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "women-04",
+      "rows": 3,
+      "columns": 3,
+      "occupiedCells": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "mixed-05",
+      "rows": 3,
+      "columns": 3,
+      "occupiedCells": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "characters": [
+    {
+      "id": "man-01",
+      "image": "assets/characters/customers/men/man-01.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 14,
+      "apparentAgeRange": [
+        14,
+        16
+      ],
+      "ageGroup": "under18",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Black Irish",
+        "skinTone": "deep brown",
+        "hair": "short tightly coiled black hair",
+        "face": "round cheeks, broad nose",
+        "clothing": "blue zip-up hoodie",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "men-01",
+        "cell": 1,
+        "row": 1,
+        "column": 1
+      }
+    },
+    {
+      "id": "man-02",
+      "image": "assets/characters/customers/men/man-02.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 15,
+      "apparentAgeRange": [
+        14,
+        17
+      ],
+      "ageGroup": "under18",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "White Irish",
+        "skinTone": "fair",
+        "hair": "straight auburn fringe",
+        "face": "freckles, small pointed chin",
+        "clothing": "forest green sweatshirt",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "men-01",
+        "cell": 2,
+        "row": 1,
+        "column": 2
+      }
+    },
+    {
+      "id": "man-03",
+      "image": "assets/characters/customers/men/man-03.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 16,
+      "apparentAgeRange": [
+        16,
+        19
+      ],
+      "ageGroup": "under18",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "South Asian",
+        "skinTone": "medium brown",
+        "hair": "thick dark wavy hair",
+        "face": "long narrow face, strong brows",
+        "clothing": "red varsity jacket",
+        "visibleClothingColours": [
+          "red"
+        ],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "men-01",
+        "cell": 3,
+        "row": 1,
+        "column": 3
+      }
+    },
+    {
+      "id": "man-04",
+      "image": "assets/characters/customers/men/man-04.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 17,
+      "apparentAgeRange": [
+        16,
+        20
+      ],
+      "ageGroup": "under18",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "East Asian",
+        "skinTone": "light tan",
+        "hair": "straight black layered hair",
+        "face": "oval face, low-set brows",
+        "clothing": "cream bomber jacket",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "men-01",
+        "cell": 4,
+        "row": 2,
+        "column": 1
+      }
+    },
+    {
+      "id": "man-05",
+      "image": "assets/characters/customers/men/man-05.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 17,
+      "apparentAgeRange": [
+        16,
+        20
+      ],
+      "ageGroup": "under18",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Arab",
+        "skinTone": "olive",
+        "hair": "loose dark curls",
+        "face": "angular chin, prominent ears",
+        "clothing": "grey hoodie",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "men-01",
+        "cell": 5,
+        "row": 2,
+        "column": 2
+      }
+    },
+    {
+      "id": "man-06",
+      "image": "assets/characters/customers/men/man-06.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 18,
+      "apparentAgeRange": [
+        16,
+        21
+      ],
+      "ageGroup": "youngAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "White European",
+        "skinTone": "fair",
+        "hair": "short sandy blond hair",
+        "face": "wide nose, soft jaw",
+        "clothing": "navy denim jacket",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "men-01",
+        "cell": 6,
+        "row": 2,
+        "column": 3
+      }
+    },
+    {
+      "id": "man-07",
+      "image": "assets/characters/customers/men/man-07.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 19,
+      "apparentAgeRange": [
+        17,
+        22
+      ],
+      "ageGroup": "youngAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Black African",
+        "skinTone": "dark brown",
+        "hair": "short tapered twists",
+        "face": "long face, high cheekbones",
+        "clothing": "mustard crewneck jumper",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "men-01",
+        "cell": 7,
+        "row": 3,
+        "column": 1
+      }
+    },
+    {
+      "id": "man-08",
+      "image": "assets/characters/customers/men/man-08.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 20,
+      "apparentAgeRange": [
+        18,
+        23
+      ],
+      "ageGroup": "youngAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Latino",
+        "skinTone": "medium tan",
+        "hair": "black swept-back hair",
+        "face": "rounded jaw, expressive brows",
+        "clothing": "white shirt and dark jacket",
+        "visibleClothingColours": [],
+        "glasses": true,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "men-01",
+        "cell": 8,
+        "row": 3,
+        "column": 2
+      }
+    },
+    {
+      "id": "man-09",
+      "image": "assets/characters/customers/men/man-09.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 21,
+      "apparentAgeRange": [
+        18,
+        24
+      ],
+      "ageGroup": "youngAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Mixed heritage",
+        "skinTone": "warm brown",
+        "hair": "short textured brown curls",
+        "face": "thin nose, dimpled chin",
+        "clothing": "dark red pullover",
+        "visibleClothingColours": [
+          "red"
+        ],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "men-01",
+        "cell": 9,
+        "row": 3,
+        "column": 3
+      }
+    },
+    {
+      "id": "man-10",
+      "image": "assets/characters/customers/men/man-10.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 24,
+      "apparentAgeRange": [
+        23,
+        29
+      ],
+      "ageGroup": "youngAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "White Irish",
+        "skinTone": "pale",
+        "hair": "dark buzz cut",
+        "face": "square jaw, slight under-eye circles",
+        "clothing": "olive field jacket",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "stubble"
+      },
+      "generation": {
+        "sheetId": "men-02",
+        "cell": 1,
+        "row": 1,
+        "column": 1
+      }
+    },
+    {
+      "id": "man-11",
+      "image": "assets/characters/customers/men/man-11.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 28,
+      "apparentAgeRange": [
+        26,
+        33
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "East Asian",
+        "skinTone": "light beige",
+        "hair": "dark side-parted hair",
+        "face": "narrow chin, prominent cheekbones",
+        "clothing": "burgundy shirt",
+        "visibleClothingColours": [
+          "red"
+        ],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "men-02",
+        "cell": 2,
+        "row": 1,
+        "column": 2
+      }
+    },
+    {
+      "id": "man-12",
+      "image": "assets/characters/customers/men/man-12.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 32,
+      "apparentAgeRange": [
+        29,
+        36
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Black British",
+        "skinTone": "deep brown",
+        "hair": "close-cropped black hair",
+        "face": "broad jaw, high forehead",
+        "clothing": "teal casual blazer",
+        "visibleClothingColours": [],
+        "glasses": true,
+        "hat": false,
+        "facialHair": "short beard"
+      },
+      "generation": {
+        "sheetId": "men-02",
+        "cell": 3,
+        "row": 1,
+        "column": 3
+      }
+    },
+    {
+      "id": "man-13",
+      "image": "assets/characters/customers/men/man-13.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 35,
+      "apparentAgeRange": [
+        32,
+        40
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "South Asian",
+        "skinTone": "warm brown",
+        "hair": "wavy salt-and-pepper black hair",
+        "face": "long nose, strong cheekbones",
+        "clothing": "rust-coloured sweater",
+        "visibleClothingColours": [
+          "red"
+        ],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "short beard"
+      },
+      "generation": {
+        "sheetId": "men-02",
+        "cell": 4,
+        "row": 2,
+        "column": 1
+      }
+    },
+    {
+      "id": "man-14",
+      "image": "assets/characters/customers/men/man-14.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 39,
+      "apparentAgeRange": [
+        36,
+        44
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Middle Eastern",
+        "skinTone": "olive",
+        "hair": "thick black hair with a receding hairline",
+        "face": "heavy eyebrows, narrow mouth",
+        "clothing": "charcoal collared shirt",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "stubble"
+      },
+      "generation": {
+        "sheetId": "men-02",
+        "cell": 5,
+        "row": 2,
+        "column": 2
+      }
+    },
+    {
+      "id": "man-15",
+      "image": "assets/characters/customers/men/man-15.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 43,
+      "apparentAgeRange": [
+        40,
+        48
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "White European",
+        "skinTone": "light",
+        "hair": "dark blond hair graying at temples",
+        "face": "prominent nose, deep-set eyes",
+        "clothing": "brick-red cardigan",
+        "visibleClothingColours": [
+          "red"
+        ],
+        "glasses": true,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "men-02",
+        "cell": 6,
+        "row": 2,
+        "column": 3
+      }
+    },
+    {
+      "id": "man-16",
+      "image": "assets/characters/customers/men/man-16.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 49,
+      "apparentAgeRange": [
+        46,
+        55
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Black African",
+        "skinTone": "dark brown",
+        "hair": "very short greying hair",
+        "face": "broad nose, prominent smile lines",
+        "clothing": "smart navy jacket",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "neat beard"
+      },
+      "generation": {
+        "sheetId": "men-02",
+        "cell": 7,
+        "row": 3,
+        "column": 1
+      }
+    },
+    {
+      "id": "man-17",
+      "image": "assets/characters/customers/men/man-17.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 54,
+      "apparentAgeRange": [
+        51,
+        60
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Latino",
+        "skinTone": "medium tan",
+        "hair": "grey-streaked wavy hair",
+        "face": "round face, pronounced brow",
+        "clothing": "brown leather jacket",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "moustache"
+      },
+      "generation": {
+        "sheetId": "men-02",
+        "cell": 8,
+        "row": 3,
+        "column": 2
+      }
+    },
+    {
+      "id": "man-18",
+      "image": "assets/characters/customers/men/man-18.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 58,
+      "apparentAgeRange": [
+        55,
+        65
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "East Asian",
+        "skinTone": "light tan",
+        "hair": "short silver-black hair",
+        "face": "lined cheeks, distinctive narrow nose",
+        "clothing": "black coat and red scarf",
+        "visibleClothingColours": [
+          "red"
+        ],
+        "glasses": true,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "men-02",
+        "cell": 9,
+        "row": 3,
+        "column": 3
+      }
+    },
+    {
+      "id": "man-19",
+      "image": "assets/characters/customers/men/man-19.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 66,
+      "apparentAgeRange": [
+        62,
+        72
+      ],
+      "ageGroup": "olderAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "White Irish",
+        "skinTone": "fair",
+        "hair": "short silver hair",
+        "face": "broad cheeks, bushy eyebrows",
+        "clothing": "green checked shirt",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": true,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "mixed-05",
+        "cell": 1,
+        "row": 1,
+        "column": 1
+      }
+    },
+    {
+      "id": "man-20",
+      "image": "assets/characters/customers/men/man-20.webp",
+      "genderPresentation": "male",
+      "ageAtCampaignStart": 74,
+      "apparentAgeRange": [
+        70,
+        80
+      ],
+      "ageGroup": "olderAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "South Asian",
+        "skinTone": "medium brown",
+        "hair": "thin white hair combed back",
+        "face": "high forehead, long oval face",
+        "clothing": "maroon waistcoat and cream shirt",
+        "visibleClothingColours": [
+          "red"
+        ],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "white moustache"
+      },
+      "generation": {
+        "sheetId": "mixed-05",
+        "cell": 2,
+        "row": 1,
+        "column": 2
+      }
+    },
+    {
+      "id": "woman-01",
+      "image": "assets/characters/customers/women/woman-01.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 14,
+      "apparentAgeRange": [
+        13,
+        16
+      ],
+      "ageGroup": "under18",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "East Asian",
+        "skinTone": "light tan",
+        "hair": "straight black bob",
+        "face": "rounded cheeks, narrow nose",
+        "clothing": "orange hoodie",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-03",
+        "cell": 1,
+        "row": 1,
+        "column": 1
+      }
+    },
+    {
+      "id": "woman-02",
+      "image": "assets/characters/customers/women/woman-02.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 15,
+      "apparentAgeRange": [
+        14,
+        17
+      ],
+      "ageGroup": "under18",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Black Irish",
+        "skinTone": "dark brown",
+        "hair": "two natural hair puffs",
+        "face": "large eyes, softly rounded jaw",
+        "clothing": "mint-green sweatshirt",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-03",
+        "cell": 2,
+        "row": 1,
+        "column": 2
+      }
+    },
+    {
+      "id": "woman-03",
+      "image": "assets/characters/customers/women/woman-03.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 16,
+      "apparentAgeRange": [
+        16,
+        19
+      ],
+      "ageGroup": "under18",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "White Irish",
+        "skinTone": "fair",
+        "hair": "short copper hair with fringe",
+        "face": "freckles, broad cheekbones",
+        "clothing": "dark red hoodie",
+        "visibleClothingColours": [
+          "red"
+        ],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-03",
+        "cell": 3,
+        "row": 1,
+        "column": 3
+      }
+    },
+    {
+      "id": "woman-04",
+      "image": "assets/characters/customers/women/woman-04.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 17,
+      "apparentAgeRange": [
+        16,
+        20
+      ],
+      "ageGroup": "under18",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "South Asian",
+        "skinTone": "warm brown",
+        "hair": "long black braid over shoulder",
+        "face": "arched eyebrows, narrow chin",
+        "clothing": "blue denim jacket",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-03",
+        "cell": 4,
+        "row": 2,
+        "column": 1
+      }
+    },
+    {
+      "id": "woman-05",
+      "image": "assets/characters/customers/women/woman-05.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 17,
+      "apparentAgeRange": [
+        16,
+        20
+      ],
+      "ageGroup": "under18",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Latina",
+        "skinTone": "olive tan",
+        "hair": "shoulder-length dark curls",
+        "face": "heart-shaped face, broad smile",
+        "clothing": "cream sweater",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-03",
+        "cell": 5,
+        "row": 2,
+        "column": 2
+      }
+    },
+    {
+      "id": "woman-06",
+      "image": "assets/characters/customers/women/woman-06.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 18,
+      "apparentAgeRange": [
+        17,
+        21
+      ],
+      "ageGroup": "youngAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Arab",
+        "skinTone": "olive",
+        "hair": "dark wavy hair worn loose",
+        "face": "wide-set eyes, sharp jawline",
+        "clothing": "forest green bomber jacket",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-03",
+        "cell": 6,
+        "row": 2,
+        "column": 3
+      }
+    },
+    {
+      "id": "woman-07",
+      "image": "assets/characters/customers/women/woman-07.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 19,
+      "apparentAgeRange": [
+        17,
+        22
+      ],
+      "ageGroup": "youngAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Mixed heritage",
+        "skinTone": "medium brown",
+        "hair": "short tight curls",
+        "face": "prominent cheekbones, oval face",
+        "clothing": "red plaid overshirt",
+        "visibleClothingColours": [
+          "red"
+        ],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-03",
+        "cell": 7,
+        "row": 3,
+        "column": 1
+      }
+    },
+    {
+      "id": "woman-08",
+      "image": "assets/characters/customers/women/woman-08.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 20,
+      "apparentAgeRange": [
+        18,
+        23
+      ],
+      "ageGroup": "youngAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "White European",
+        "skinTone": "pale",
+        "hair": "light blonde pixie cut",
+        "face": "round eyes, small nose",
+        "clothing": "navy zip jacket",
+        "visibleClothingColours": [],
+        "glasses": true,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-03",
+        "cell": 8,
+        "row": 3,
+        "column": 2
+      }
+    },
+    {
+      "id": "woman-09",
+      "image": "assets/characters/customers/women/woman-09.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 21,
+      "apparentAgeRange": [
+        18,
+        24
+      ],
+      "ageGroup": "youngAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Black African",
+        "skinTone": "deep brown",
+        "hair": "braided updo",
+        "face": "high forehead, defined cheekbones",
+        "clothing": "yellow crewneck top",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-03",
+        "cell": 9,
+        "row": 3,
+        "column": 3
+      }
+    },
+    {
+      "id": "woman-10",
+      "image": "assets/characters/customers/women/woman-10.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 24,
+      "apparentAgeRange": [
+        23,
+        29
+      ],
+      "ageGroup": "youngAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "White Irish",
+        "skinTone": "fair",
+        "hair": "shoulder-length chestnut waves",
+        "face": "freckles, strong chin",
+        "clothing": "purple cardigan",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-04",
+        "cell": 1,
+        "row": 1,
+        "column": 1
+      }
+    },
+    {
+      "id": "woman-11",
+      "image": "assets/characters/customers/women/woman-11.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 28,
+      "apparentAgeRange": [
+        26,
+        33
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "East Asian",
+        "skinTone": "light beige",
+        "hair": "neat black ponytail",
+        "face": "angular jaw, narrow eyes",
+        "clothing": "red turtleneck",
+        "visibleClothingColours": [
+          "red"
+        ],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-04",
+        "cell": 2,
+        "row": 1,
+        "column": 2
+      }
+    },
+    {
+      "id": "woman-12",
+      "image": "assets/characters/customers/women/woman-12.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 32,
+      "apparentAgeRange": [
+        29,
+        36
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "South Asian",
+        "skinTone": "warm brown",
+        "hair": "thick dark shoulder-length waves",
+        "face": "strong nose, defined brows",
+        "clothing": "teal blazer",
+        "visibleClothingColours": [],
+        "glasses": true,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-04",
+        "cell": 3,
+        "row": 1,
+        "column": 3
+      }
+    },
+    {
+      "id": "woman-13",
+      "image": "assets/characters/customers/women/woman-13.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 35,
+      "apparentAgeRange": [
+        32,
+        40
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Black British",
+        "skinTone": "dark brown",
+        "hair": "close-cropped natural hair",
+        "face": "soft square jaw, round eyes",
+        "clothing": "cream blouse and brown jacket",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-04",
+        "cell": 4,
+        "row": 2,
+        "column": 1
+      }
+    },
+    {
+      "id": "woman-14",
+      "image": "assets/characters/customers/women/woman-14.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 39,
+      "apparentAgeRange": [
+        36,
+        44
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Latina",
+        "skinTone": "medium tan",
+        "hair": "dark wavy bob",
+        "face": "rounded chin, striking eyebrows",
+        "clothing": "blue patterned top",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-04",
+        "cell": 5,
+        "row": 2,
+        "column": 2
+      }
+    },
+    {
+      "id": "woman-15",
+      "image": "assets/characters/customers/women/woman-15.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 43,
+      "apparentAgeRange": [
+        40,
+        48
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Arab",
+        "skinTone": "olive",
+        "hair": "dark hair in low bun",
+        "face": "long face, pronounced cheekbones",
+        "clothing": "burgundy jacket",
+        "visibleClothingColours": [
+          "red"
+        ],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-04",
+        "cell": 6,
+        "row": 2,
+        "column": 3
+      }
+    },
+    {
+      "id": "woman-16",
+      "image": "assets/characters/customers/women/woman-16.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 49,
+      "apparentAgeRange": [
+        46,
+        55
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "White European",
+        "skinTone": "light",
+        "hair": "blonde hair with grey roots",
+        "face": "deep-set eyes, broad nose",
+        "clothing": "olive jacket and cream blouse",
+        "visibleClothingColours": [],
+        "glasses": true,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-04",
+        "cell": 7,
+        "row": 3,
+        "column": 1
+      }
+    },
+    {
+      "id": "woman-17",
+      "image": "assets/characters/customers/women/woman-17.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 54,
+      "apparentAgeRange": [
+        51,
+        60
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "Black African",
+        "skinTone": "deep brown",
+        "hair": "short grey-streaked curls",
+        "face": "full cheeks, expressive brows",
+        "clothing": "mustard yellow cardigan",
+        "visibleClothingColours": [],
+        "glasses": false,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-04",
+        "cell": 8,
+        "row": 3,
+        "column": 2
+      }
+    },
+    {
+      "id": "woman-18",
+      "image": "assets/characters/customers/women/woman-18.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 58,
+      "apparentAgeRange": [
+        55,
+        65
+      ],
+      "ageGroup": "adult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "East Asian",
+        "skinTone": "light tan",
+        "hair": "chin-length salt-and-pepper hair",
+        "face": "fine smile lines, square jaw",
+        "clothing": "dark plum coat",
+        "visibleClothingColours": [],
+        "glasses": true,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "women-04",
+        "cell": 9,
+        "row": 3,
+        "column": 3
+      }
+    },
+    {
+      "id": "woman-19",
+      "image": "assets/characters/customers/women/woman-19.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 66,
+      "apparentAgeRange": [
+        62,
+        72
+      ],
+      "ageGroup": "olderAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "White Irish",
+        "skinTone": "fair",
+        "hair": "short wavy grey hair",
+        "face": "distinctive hooked nose, round cheeks",
+        "clothing": "red patterned scarf and navy coat",
+        "visibleClothingColours": [
+          "red"
+        ],
+        "glasses": false,
+        "hat": true,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "mixed-05",
+        "cell": 3,
+        "row": 1,
+        "column": 3
+      }
+    },
+    {
+      "id": "woman-20",
+      "image": "assets/characters/customers/women/woman-20.webp",
+      "genderPresentation": "female",
+      "ageAtCampaignStart": 74,
+      "apparentAgeRange": [
+        70,
+        80
+      ],
+      "ageGroup": "olderAdult",
+      "visualDesign": {
+        "ethnicBackgroundDesignBrief": "South Asian",
+        "skinTone": "medium brown",
+        "hair": "white hair in loose bun",
+        "face": "deep smile lines, high cheekbones",
+        "clothing": "dark green cardigan",
+        "visibleClothingColours": [],
+        "glasses": true,
+        "hat": false,
+        "facialHair": "none"
+      },
+      "generation": {
+        "sheetId": "mixed-05",
+        "cell": 4,
+        "row": 2,
+        "column": 1
+      }
+    }
+  ]
+}

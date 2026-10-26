@@ -223,6 +223,19 @@ def about(request: Request):
         name="about.html",
         request=request
     )
+    
+@app.get("/games", response_class=HTMLResponse)
+def games(request: Request):
+    return templates.TemplateResponse(
+        name="games.html",
+        request=request
+    )
+    
+app.mount(
+    "/games",
+    StaticFiles(directory="games", html=True),
+    name="game_files"
+)
 
 # @app.get("/article/{article_id}/{level}", response_model=SimplifiedArticles)
 # async def get_body(article_id: int, level: EnglishLevel, session: SessionDep):
