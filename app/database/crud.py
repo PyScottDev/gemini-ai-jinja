@@ -175,9 +175,7 @@ def update_body(
     db_article: SimplifiedArticles,
     simplified_body: GeminiBody,
     ):
-    
-    db_article.headline = simplified_body.headline
-    db_article.subheadline = simplified_body.subheadline
+
     db_article.body = simplified_body.body
     db_article.questions = json.dumps(simplified_body.questions, ensure_ascii=False)
     db_article.vocabulary = json.dumps(
