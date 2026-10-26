@@ -4,6 +4,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
 import json
+from pathlib import Path
 
 from app.services.guardian import fetch_articles, fetch_body
 from app.services.gemini import simplify_headline, simplify_body
@@ -231,11 +232,15 @@ def games(request: Request):
         request=request
     )
     
+
+GAMES_DIR = Path(__file__).resolve().parent / "games"
+
 app.mount(
     "/games",
-    StaticFiles(directory="games", html=True),
+    StaticFiles(directory=GAMES_DIR, html=True),
     name="game_files"
 )
+
 
 # @app.get("/article/{article_id}/{level}", response_model=SimplifiedArticles)
 # async def get_body(article_id: int, level: EnglishLevel, session: SessionDep):
